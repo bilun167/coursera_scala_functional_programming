@@ -17,4 +17,5 @@ object list {
 		def head: Nothing = throw new NoSuchElementException("Nil.head")
 		def tail: Nothing = throw new NoSuchElementException("Nil.tail")
 	}
+
 }
