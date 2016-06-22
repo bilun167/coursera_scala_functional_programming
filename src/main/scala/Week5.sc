@@ -14,10 +14,15 @@ object SC {
 	def removeAt[T](list: List[T], n: Int): List[T] = list.take(n) ::: list.drop(n + 1)
 	removeAt(l, 2)
 
-	def flatten(xs: List[Any]): List[Any] = xs match {
-		case Nil => Nil
-		case (h: List[_])::t => flatten(h):::flatten(t)
-		case (h: Any)::t => h::flatten(t)
+	def flatten(xs: List[Any]): List[Any] = {
+		def flatten0(acc: List[Any], xs: List[Any]): List[Any] = xs match {
+			case Nil => acc
+			case (h: List[_])::Nil => flatten0(acc, h)
+			case (h: List[_])::t => flatten0(acc:::h, t)
+			case h::t => flatten0(acc:::List(h), t)
+		}
+
+		flatten0(List(), xs)
 	}
 
 	flatten(List(List(1, 1), 2, List(3, List(5, 8))))
