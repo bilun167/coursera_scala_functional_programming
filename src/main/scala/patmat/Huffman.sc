@@ -13,5 +13,12 @@ object SC {
 
 	val f1 = Huffman.makeCodeTree(l3, l4)
 	f1.weight
+
+	Huffman.decodedSecret
+
+	Huffman.singleton(List(l1, l2, l3))
+
+	Huffman.times(List('A', 'B'))
+	Huffman.makeOrderedLeafList(List(('A', 3), ('B', 2)))
 }
 
