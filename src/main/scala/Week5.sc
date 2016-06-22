@@ -12,6 +12,13 @@ object SC {
 	rev(l)
 
 	def removeAt[T](list: List[T], n: Int): List[T] = list.take(n) ::: list.drop(n + 1)
-
 	removeAt(l, 2)
+
+	def flatten(xs: List[Any]): List[Any] = xs match {
+		case Nil => Nil
+		case (h: List[Any])::t => flatten(h):::flatten(t)
+		case (h: Any)::t => h::flatten(t)
+	}
+
+	flatten(List(List(1, 1), 2, List(3, List(5, 8))))
 }
