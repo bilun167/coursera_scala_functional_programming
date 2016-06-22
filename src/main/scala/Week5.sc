@@ -16,7 +16,7 @@ object SC {
 
 	def flatten(xs: List[Any]): List[Any] = xs match {
 		case Nil => Nil
-		case (h: List[Any])::t => flatten(h):::flatten(t)
+		case (h: List[_])::t => flatten(h):::flatten(t)
 		case (h: Any)::t => h::flatten(t)
 	}
 
