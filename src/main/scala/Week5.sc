@@ -10,4 +10,8 @@ object SC {
 
 	def l = List(3, 5, 7, 9)
 	rev(l)
+
+	def removeAt[T](list: List[T], n: Int): List[T] = list.take(n) ::: list.drop(n + 1)
+
+	removeAt(l, 2)
 }
