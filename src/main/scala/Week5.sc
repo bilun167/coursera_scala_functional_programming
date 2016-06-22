@@ -45,4 +45,28 @@ object SC {
 	}
 	msort(List(9, 6, 5, 3))
 
+
+	def squareList(xs: List[Int]): List[Int] =
+		xs match {
+			case Nil => Nil
+			case y :: ys => y*y :: squareList(ys)
+		}
+
+	def squareList1(xs: List[Int]): List[Int] =
+		xs map (x => x * x)
+
+	squareList(List(2, 3, 5, 9))
+	squareList1(List(2, 3, 5, 9))
+
+	def pack[T](xs: List[T]): List[List[T]] = xs match {
+		case Nil => Nil
+		case x :: xs1 =>
+			val (first, rest) = xs span (t => t == x)
+			first :: pack (rest)
+	}
+
+	pack(List(1, 1, 2, 1, 1, 1, 3, 3, 3, 5, 6, 9, 9))
+
+	def encode[T](xs: List[T]): List[(T, Int)] = pack(xs).map(l => (l.head, l.length))
+	encode(List(1, 1, 2, 1, 1, 1, 3, 3, 3, 5, 6, 9, 9))
 }
