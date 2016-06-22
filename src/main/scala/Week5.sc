@@ -26,4 +26,23 @@ object SC {
 	}
 
 	flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+
+	def msort(xs: List[Int]): List[Int] = {
+		val n = xs.length / 2
+		if (n == 0) xs
+		else {
+			def merge(xs: List[Int], ys: List[Int]): List[Int] = (xs, ys) match {
+				case (Nil, ys) => ys
+				case (xs, Nil) => xs
+				case (hx::txs, hy::tys) =>
+					if (hx < hy) hx::merge(txs, ys)
+					else hy::merge(xs, tys)
+			}
+
+			val (fst, snd) = xs splitAt(n)
+			merge(msort(fst), msort(snd))
+		}
+	}
+	msort(List(9, 6, 5, 3))
+
 }
